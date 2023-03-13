@@ -1,3 +1,7 @@
+/*
+source https://github.com/zennn08/express-uploader
+*/
+
 import express from 'express';
 import logger from 'morgan';
 import cors from 'cors';
@@ -48,7 +52,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage,
     limits: {
-        fileSize: 10000000 // 10 MB
+        fileSize: 500000000 // 500 MB
     }
 })
 
@@ -63,13 +67,13 @@ app.post('/upload', upload.single('file'), (req, res) => {
     })
     res.status(200).json({
         status: true,
-        message: "Created by aqulzz",
+        message: "Created by RohmanXD",
         result: {
             originalname: req.file.originalname,
             encoding: req.file.encoding,
             mimetype: req.file.mimetype,
             size: req.file.size,
-            url: "https://" + req.hostname + "/file/" + req.file.filename
+            url: "https://"+ req.hostname +"/file/" + req.file.filename
         }
     })
 }, (error, req, res, next) => {
@@ -95,7 +99,7 @@ app.post('/multi-upload', upload.array('files', 10), (req, res) => {
     });
     res.status(200).json({
         status: true,
-        message: "Created by aqulzz",
+        message: "Created by RohmanXD",
         result: result
     })
 })
